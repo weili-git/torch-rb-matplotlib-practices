@@ -4,4 +4,4 @@
 - torch-rb (require libtorch)
 - matplotlib for ruby (require pycall, python, matplotlib)
 # Result
-!(https://github.com/weili-git/torch-rb-matplotlib-practices/blob/main/Figure_1.png)
+!(./Figure_1.png)
