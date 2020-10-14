@@ -26,7 +26,7 @@ plt = Matplotlib::Pyplot
 plt.ion  # start real time drawing
 plt.show
 
-opimizer = Torch::Optim::SGD.new(net.parameters, lr: 0.1)
+opimizer = Torch::Optim::SGD.new(net.parameters, lr: 0.3)
 loss_func = Torch::NN::MSELoss.new
 
 epochs = 200
