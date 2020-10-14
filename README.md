@@ -4,4 +4,4 @@
 - torch-rb (require libtorch)
 - matplotlib for ruby (require pycall, python, matplotlib)
 # Result
-!(./Figure_1.png)
+![](./Figure_1.png)
