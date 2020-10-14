@@ -5,4 +5,4 @@ Study machine learning by torch-rb and matplotlib.
 - torch-rb (require libtorch)
 - matplotlib for ruby (require pycall, python, matplotlib)
 # Result
-![](./Figure_1.png?raw=true)
+![](https://gitee.com/weiligit/codes/3moug12cqkdwyiprejbv897/raw?blob_name=Figure_1.png)
