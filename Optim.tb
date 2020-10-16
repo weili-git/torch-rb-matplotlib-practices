@@ -1,0 +1,76 @@
+require 'torch'
+require 'matplotlib/pyplot'
+
+plt = Matplotlib::Pyplot
+
+# hyper parameters
+LR = 0.02
+BATCH_SIZE = 32
+EPOCH = 12
+
+x = Torch.unsqueeze(Torch.linspace(-1, 1, 1000), 1)
+y = x.pow(2) + Torch.rand(x.size)*0.2
+
+# plot dataset
+# plt.scatter(x.to_a, y.to_a)
+# plt.show
+
+# mini_batch
+torch_dataset = Torch::Utils::Data::TensorDataset.new(x, y)
+loader = Torch::Utils::Data::DataLoader.new(
+    torch_dataset, batch_size: BATCH_SIZE, shuffle: true   # , num_workers: 2
+)
+
+class MyNet < Torch::NN::Module
+    def initialize(n_features, n_hidden, n_output)
+        super()
+        @hidden = Torch::NN::Linear.new(n_features, n_hidden)
+        @predict = Torch::NN::Linear.new(n_hidden, n_output)
+    end
+
+    def forward(x)
+        x = @hidden.call(x)
+        x = Torch::NN::F.relu(x)
+        x = @predict.call(x)
+        return x
+    end
+end
+
+net_SGD         = MyNet.new(1, 20, 1)
+net_Momentum    = MyNet.new(1, 20, 1)
+net_RMSprop     = MyNet.new(1, 20, 1)
+net_Adam        = MyNet.new(1, 20, 1)
+nets            = [net_SGD, net_Momentum, net_RMSprop, net_Adam]
+
+opt_SGD         = Torch::Optim::SGD.new(net_SGD.parameters, lr: LR)
+opt_Momentum    = Torch::Optim::SGD.new(net_Momentum.parameters, lr: LR)  # , momentum: 0.8 
+opt_RMSprop     = Torch::Optim::RMSprop.new(net_RMSprop.parameters, lr: LR, alpha: 0.9)
+opt_Adam        = Torch::Optim::Adam.new(net_Adam.parameters, lr: LR, betas: [0.9, 0.99])
+optimizers      = [opt_SGD, opt_Momentum, opt_RMSprop, opt_Adam]
+
+loss_func   = Torch::NN::MSELoss.new
+loss_hist   = [[], [], [], []]  # record loss
+
+EPOCH.times do |epoch|
+    puts "epoch: #{epoch}"
+    loader.each_with_index do |(batch_x, batch_y), step|
+        nets.zip(optimizers, loss_hist).each do |net, opt, l_his|
+            output = net.call(batch_x)
+            loss = loss_func.call(output, batch_y)  # .call
+            opt.zero_grad
+            loss.backward
+            opt.step  ##
+            l_his.append(loss.view(1).to_f)
+        end
+    end
+end
+
+labels = ['SGD', 'Momentum', 'RMSprop', 'Adam']
+loss_hist.each_with_index do |l_his, i|
+    plt.plot(l_his, label: labels[i])
+end
+plt.legend(loc: 'best')
+plt.xlabel('Steps')
+plt.ylabel('Loss')
+plt.ylim([0, 0.2])
+plt.show
