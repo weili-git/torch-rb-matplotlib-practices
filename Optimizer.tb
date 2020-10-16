@@ -18,7 +18,7 @@ y = x.pow(2) + Torch.rand(x.size)*0.2
 # mini_batch
 torch_dataset = Torch::Utils::Data::TensorDataset.new(x, y)
 loader = Torch::Utils::Data::DataLoader.new(
-    torch_dataset, batch_size: BATCH_SIZE, shuffle: true   # , num_workers: 2
+    torch_dataset, batch_size: BATCH_SIZE, shuffle: true   # , num_workers: 2 / unavailable
 )
 
 class MyNet < Torch::NN::Module
