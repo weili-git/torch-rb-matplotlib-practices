@@ -11,3 +11,4 @@ Study machine learning by torch-rb and matplotlib.
 ![rnn](https://gitee.com/weiligit/codes/t2v4k9ezbrhx8jfd5ni6p20/raw?blob_name=Figure_4.png)
 ![autoencoder](https://gitee.com/weiligit/codes/bekl6rfyj0cap8w1qzhix76/raw?blob_name=Figure_5.png)
 ![autoencoder](https://gitee.com/weiligit/codes/bekl6rfyj0cap8w1qzhix76/raw?blob_name=Figure_6.png)
+![gan](https://gitee.com/weiligit/codes/cqn4wmvb2s3agxpof6zki35/raw?blob_name=Figure_7.png)
