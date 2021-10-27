@@ -12,3 +12,6 @@ Study machine learning by torch-rb and matplotlib.
 ![autoencoder](https://gitee.com/weiligit/codes/bekl6rfyj0cap8w1qzhix76/raw?blob_name=Figure_5.png)
 ![autoencoder](https://gitee.com/weiligit/codes/bekl6rfyj0cap8w1qzhix76/raw?blob_name=Figure_6.png)
 ![gan](https://gitee.com/weiligit/codes/cqn4wmvb2s3agxpof6zki35/raw?blob_name=Figure_7.png)
+
+# reference
+https://github.com/MorvanZhou/PyTorch-Tutorial
