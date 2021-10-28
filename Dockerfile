@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
 ENV RUBY_VERSION 3.0.2
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Using aliyun ubuntu mirror
 RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list 
